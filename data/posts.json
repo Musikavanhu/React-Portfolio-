@@ -1,0 +1,266 @@
+[
+  {
+    "slug": "latent-planning-autoregressive-generation",
+    "title": "Latent Planning Meets Autoregressive Generation",
+    "subtitle": "Training custom transformers to think before they speak",
+    "date": "2025-04-18",
+    "category": "AI Research",
+    "readTime": "8 min read",
+    "featured": true,
+    "image": "/llmwalking.gif",
+    "excerpt": "What happens when you give a language model the ability to plan in latent space before committing tokens? I've been training custom transformer architectures on Apple MPS to explore exactly this — and the results challenge some assumptions about autoregressive generation.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Most language models generate text one token at a time, left to right, without any explicit planning mechanism. Each token is conditioned on everything before it, but the model has no way to 'look ahead' or structure its output before committing to the next word."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is a fundamental limitation. When you write an essay, you don't start with the first word and hope the last paragraph makes sense — you plan. You have a thesis, an outline, a sense of where the argument needs to go. Current autoregressive models lack this entirely."
+      },
+      {
+        "type": "heading",
+        "text": "The Latent Planning Hypothesis"
+      },
+      {
+        "type": "paragraph",
+        "text": "My research explores a simple but powerful idea: what if we give models a dedicated 'planning' step in latent space before they begin generating? Instead of immediately producing tokens, the model first produces a compressed plan — a latent representation of the overall structure — and then conditions its autoregressive generation on that plan."
+      },
+      {
+        "type": "paragraph",
+        "text": "I've been training custom transformer architectures on Apple Silicon (MPS backend) using PyTorch and HuggingFace. The architecture uses a contrastive loss function to ensure that the latent plan is meaningfully different from a simple summary, and attention map attribution to verify that the model actually uses the plan during generation."
+      },
+      {
+        "type": "heading",
+        "text": "Early Results"
+      },
+      {
+        "type": "paragraph",
+        "text": "The early results are promising. Models with latent planning show improved coherence over long sequences, better adherence to complex instructions, and — most surprisingly — improved factual consistency. The plan seems to act as a soft constraint that keeps the model 'on track' even when the autoregressive process would otherwise drift."
+      },
+      {
+        "type": "paragraph",
+        "text": "There's still much work to do. The planning mechanism adds computational overhead, and it's not yet clear how to optimally balance plan quality against generation speed. But the direction feels right — giving models the ability to think before they speak is a step toward more reliable, more controllable AI systems."
+      }
+    ]
+  },
+  {
+    "slug": "genesis-ai-proto-asi-architecture",
+    "title": "Genesis AI — A Proto-ASI Architecture",
+    "subtitle": "Building an intelligence stack that learns, reflects, and evolves locally",
+    "date": "2025-04-10",
+    "category": "Engineering",
+    "readTime": "6 min read",
+    "featured": false,
+    "image": "/genesis.gif",
+    "excerpt": "Genesis AI is a locally-run AI assistant built on top of open-source language models with a proto-ASI cognitive architecture layered on top that goes well beyond a standard chatbot.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Genesis AI is a locally-run AI assistant built on top of open-source language models (currently Gemma 4 31B via LM Studio), with a proto-ASI cognitive architecture layered on top that goes well beyond a standard chatbot."
+      },
+      {
+        "type": "paragraph",
+        "text": "At its core, Genesis is an experiment in building a system that doesn't just respond — it learns, reflects, and evolves between conversations. The architecture includes:"
+      },
+      {
+        "type": "heading",
+        "text": "The Cognitive Architecture"
+      },
+      {
+        "type": "paragraph",
+        "text": "Memory — long-term and short-term storage of conversations, perceptions, and patterns, so Genesis builds contextual continuity over time rather than starting fresh every session."
+      },
+      {
+        "type": "paragraph",
+        "text": "Knowledge Graph + Causal Reasoning — Genesis extracts concepts and cause-effect relationships from every conversation and stores them, building a growing model of the world."
+      },
+      {
+        "type": "paragraph",
+        "text": "Meta-Cognition — a self-reflection layer that diagnoses its own failures, tracks recurring weaknesses, and promotes repeated lessons into hard behavioral constraints."
+      },
+      {
+        "type": "paragraph",
+        "text": "Test-Time Compute — for complex queries, Genesis plans before responding: it generates a reasoning plan, sketches multiple approaches, scores them for consistency, and seeds the best one into the response."
+      },
+      {
+        "type": "paragraph",
+        "text": "Distillation Export — every conversation is captured as training data with teacher signals, bucketed by domain (reasoning, planning, ethics, etc.), designed to eventually fine-tune a successor model."
+      },
+      {
+        "type": "paragraph",
+        "text": "Governance Pipeline — responses pass through a council of micro-agents, calibration scoring, and ethical filtering before reaching you."
+      },
+      {
+        "type": "paragraph",
+        "text": "Continuous Learning — quality tracking across sessions with a feedback loop that feeds into goal generation and self-improvement targets."
+      },
+      {
+        "type": "heading",
+        "text": "The LatentEvolve Philosophy"
+      },
+      {
+        "type": "paragraph",
+        "text": "The philosophy behind it is LatentEvolve: Genesis does its heaviest thinking at inference time (daytime), then consolidates lessons and distills training data at night, iteratively moving toward better versions of itself without retraining from scratch."
+      },
+      {
+        "type": "paragraph",
+        "text": "It's running entirely on your local hardware — no cloud, no external data leaving your machine — which is itself a design principle: sovereignty over the intelligence stack."
+      }
+    ]
+  },
+  {
+    "slug": "on-invisible-problems",
+    "title": "On Invisible Problems",
+    "subtitle": "Documenting the drift before the stink",
+    "date": "2026-04-22",
+    "category": "Philosophy",
+    "readTime": "4 min read",
+    "featured": false,
+    "image": "",
+    "excerpt": "When I ask myself whether I can still be whatever I want to be, the honest answer isn't really about me. It's about whether there's some invisible problem quietly drifting in the system that makes that statement untrue for someone else.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Growing up, I was told what most kids hear: you can be whatever you want to be. It was a rich thing to say in 2009, in the middle of a financial crisis that had just proven how fragile our systems actually were. I didn't have the language for it then, but the phrase always felt incomplete — like it came with an asterisk no one wanted to print."
+      },
+      {
+        "type": "paragraph",
+        "text": "I think about that phrase the same way I think about the River Thames."
+      },
+      {
+        "type": "paragraph",
+        "text": "By the mid-1800s, London had optimized for growth the way any ambitious system does — fast, optimistic, willing to push its problems downstream. Literally. The river was where the city put what it didn't want to look at. Two people noticed. Edwin Chadwick spent years documenting the coming collapse in reports parliament ignored. John Martin painted apocalyptic scenes of cities overwhelmed by their own waste — not for money, but because he needed people to see it. Both were dismissed as alarmists. Then came the summer of 1858, when the stink from the Thames got so bad that parliament physically couldn't sit in session. The smell forced the redesign the arguments never could."
+      },
+      {
+        "type": "paragraph",
+        "text": "I love that story. Not because of the collapse — because of Chadwick and Martin. They knew. They said so. They were ignored. And they kept going long enough that when the system finally broke, the blueprint for the fix was already on the table."
+      },
+      {
+        "type": "paragraph",
+        "text": "That's the part I keep coming back to as an adult. When I ask myself whether I can still be whatever I want to be, the honest answer isn't really about me. It's about whether there's some invisible problem quietly drifting in the system that makes that statement untrue for someone else. For a lot of someones."
+      },
+      {
+        "type": "paragraph",
+        "text": "That question is how I ended up in tech for good."
+      },
+      {
+        "type": "paragraph",
+        "text": "I didn't pick systems thinking because it was going to make me money. I picked it because I want to be the kind of person Chadwick and Martin were — someone who documents the drift before the stink, and keeps building even when no one's listening yet. Not because they were better than the parliament that ignored them, but because they cared enough to outlast being dismissed."
+      },
+      {
+        "type": "paragraph",
+        "text": "If I could hand the next generation one phrase to replace the one I grew up with, it wouldn't be you can be whatever you want to be. It would be a question:"
+      },
+      {
+        "type": "paragraph",
+        "text": "What's something you wish you could do for your friend that you don't think they would notice?"
+      },
+      {
+        "type": "paragraph",
+        "text": "That's where the work is."
+      }
+    ]
+  },
+  {
+    "slug": "harmonyflow-game-plan",
+    "title": "Harmonyflow: Food Node Network",
+    "subtitle": "South Dallas 10-Node Food Node Network — Operational Design",
+    "date": "2026-04-22",
+    "category": "Social Engineering",
+    "readTime": "12 min read",
+    "featured": false,
+    "image": "/feed-dallas.png",
+    "excerpt": "Turn ten apartment complexes in the eight highest-food-insecurity zip codes of South and Southwest Dallas into recursive food-supply nodes, coordinated by an invisible text-intake protocol.",
+    "content": [
+      {
+        "type": "heading",
+        "text": "The core bet"
+      },
+      {
+        "type": "paragraph",
+        "text": "Turn ten apartment complexes in the eight highest-food-insecurity zip codes of South and Southwest Dallas into recursive food-supply nodes, coordinated by an invisible text-intake protocol, with property managers as custodians and residents as both donors and recipients — until the system becomes as unremarkable a part of the building as the mailboxes."
+      },
+      {
+        "type": "heading",
+        "text": "The design principle that organizes everything"
+      },
+      {
+        "type": "paragraph",
+        "text": "The hardest part is making something important become invisible yet impactful."
+      },
+      {
+        "type": "paragraph",
+        "text": "Visible infrastructure is contested. Invisible infrastructure compounds. Recycling bins don't win zoning fights anymore because nobody remembers a time before them. Wind turbines still lose because they're visible at the horizon. We're building bins."
+      },
+      {
+        "type": "paragraph",
+        "text": "Every design decision gets filtered through one question: does this make the infrastructure more visible or less? If more, reject it — unless the visibility serves the participant (not the brand, not the funder, not the founder)."
+      },
+      {
+        "type": "heading",
+        "text": "Three audiences, three surfaces, three ticks"
+      },
+      {
+        "type": "paragraph",
+        "text": "Residents: SMS (primary) + optional iOS web link | Tick: 'Groceries available in your building this week' — three-second pickup at mailroom bin"
+      },
+      {
+        "type": "paragraph",
+        "text": "Property managers: iOS operator app | Tick: Weekly auto-generated impact PDF they forward to regional leadership"
+      },
+      {
+        "type": "paragraph",
+        "text": "Supply partners: Web dashboard | Tick: Weekly hyperlocal demand signal routed for pallet allocation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nothing is cross-visible between surfaces except what serves the participant. Residents don't see each other's names. Property managers never see individual resident intake data. Supply partners see only aggregated demand per node."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the operational expression of 'protocol not platform.' Harmonyflow owns the matching logic. Each participant owns their layer. Data flows are one-way and minimal."
+      },
+      {
+        "type": "heading",
+        "text": "Phasing"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phase 0 — Foundation (Weeks 1-4): Pre-pilot. Nothing goes live. File taxes, form Safehaven Labs LLC, rebuild NTFB relationship for pallet-level supply, recruit backup supply, identify first 3 property managers, prototype v1 bin, ship food-specific campaign template, and ship SMS bridge."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phase 1 — Three-Node Pilot (Months 1-3): Install bins primed with NTFB supply first. No resident donations accepted until Week 5 to establish quality norms. Target 500-800 lbs/week distributed per node with zero pest incidents."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phase 2 — Iterate and Prove (Months 3-6): Add a fourth node only if the first three are stable. Introduce mixed-zip-code volunteer matching, elevate resident-leaders, surface positive recipient-turned-donor stories, and formalize data feedback to NTFB."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phase 3 — Ten-Node Network (Months 6-12): Spread across all 8 target zip codes. Target 5,000-10,000 households served weekly. A critical threshold occurs when property managers start referring other property managers organically."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phase 4 — Protocol Layer (Year 2+): Integrate Harmonyflow as a module inside property management software (Yardi, AppFolio). Open the protocol to other cities and document the playbook."
+      },
+      {
+        "type": "heading",
+        "text": "Appendix — The seven-year through-line"
+      },
+      {
+        "type": "paragraph",
+        "text": "2019 Safehaven: 'Localize acts of goodwill while also improving our understanding on development and motivations through datafication of culture, emotion and relationships.'"
+      },
+      {
+        "type": "paragraph",
+        "text": "2026 Harmonyflow: Apartment-complex food nodes, coordinated by invisible protocol, with dignity-preserving intake, trust-graph volunteer matching, and recursive donor-recipient loops."
+      },
+      {
+        "type": "paragraph",
+        "text": "Same thesis. Same north star. Seven years of patience. What changed is not the vision — it's the vocabulary, the code, the operational grounding, and the willingness to let the world run through local rather than global. Keep going. One node at a time. That's how good gets known."
+      }
+    ]
+  }
+]

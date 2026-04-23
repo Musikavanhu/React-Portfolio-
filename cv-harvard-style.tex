@@ -1,0 +1,214 @@
+\documentclass[11pt, letterpaper]{article}
+
+% Harvard-style packages
+\usepackage[margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{tabularx}
+
+% Font setup
+\setmainfont{Times New Roman}[
+  BoldFont = Times New Roman Bold,
+  ItalicFont = Times New Roman Italic
+]
+
+% Color scheme
+\definecolor{harvardcrimson}{RGB}{165, 28, 48}
+\definecolor{darkgray}{RGB}{64, 64, 64}
+\definecolor{lightgray}{RGB}{128, 128, 128}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=harvardcrimson,
+    filecolor=harvardcrimson,
+    urlcolor=harvardcrimson,
+    citecolor=harvardcrimson
+}
+
+% Section formatting
+\titleformat{\section}
+  {\Large\bfseries\color{harvardcrimson}}
+  {}
+  {0pt}
+  {}
+  [\vspace{2pt}\titlerule\vspace{8pt}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{darkgray}}
+  {}
+  {0pt}
+  {}
+  [\vspace{4pt}]
+
+% Custom commands
+\newcommand{\name}[1]{\centerline{\Huge\bfseries\color{harvardcrimson}#1}}
+\newcommand{\contact}[1]{\centerline{\large\color{darkgray}#1}}
+\newcommand{\position}[3]{
+  \textbf{#1} \hfill \textit{#2} \\
+  #3 \vspace{6pt}
+}
+\newcommand{\education}[4]{
+  \textbf{#1} \hfill \textit{#2} \\
+  #3 \\
+  #4 \vspace{6pt}
+}
+
+% Spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedbottom
+
+\begin{document}
+
+% ── Header ──────────────────────────────────────────────────────────────────
+\name{Tinotenda Musikavanhu}
+\vspace{12pt}
+\contact{Frontend Engineer \textbullet\ AI Integration \textbullet\ Systems Design}
+\vspace{8pt}
+\contact{
+  \faIcon{envelope} \href{mailto:tinotenda@safehavelabs.org}{tinotenda@safehavelabs.org} \textbullet\
+  \faIcon{phone} 231-260-6380 \textbullet\
+  \faIcon{map-marker-alt} Abilene, TX
+}
+\vspace{4pt}
+\contact{
+  \faIcon{globe} \href{https://tinomusikavanhu.netlify.app}{Portfolio} \textbullet\
+  \faIcon{linkedin} \href{https://www.linkedin.com/in/tino-m-630086124}{LinkedIn} \textbullet\
+  \faIcon{github} \href{https://github.com/Musikavanhu}{GitHub}
+}
+
+\vspace{20pt}
+
+% ── Summary ─────────────────────────────────────────────────────────────────
+\section{Professional Summary}
+Results-driven Frontend Engineer with 6+ years of experience building responsive, high-performance web applications. Specialising in \textbf{React}, \textbf{TypeScript}, and \textbf{Next.js}, with a strong track record delivering production systems under enterprise SLAs. Passionate about clean UX, AI-driven product features, and pushing the boundaries of what is possible on the web. Currently exploring latent space planning and autoregressive generation research via PyTorch and HuggingFace.
+
+\vspace{8pt}
+
+% ── Education ───────────────────────────────────────────────────────────────
+\section{Education}
+
+\education{Southern Methodist University}{2016 -- 2020}{Bachelor of Science, Computer Science}{
+  \textit{Emphasis:} Systems Engineering \& Artificial Intelligence \\
+  \textit{Location:} Dallas, TX
+}
+
+\education{Harvard University --- Extension School}{Ongoing}{Continuing Education}{
+  \textit{Coursework:} Advanced Computational Theory, Ethical Frameworks in AI \& Technology \\
+  \textit{Location:} Cambridge, MA
+}
+
+% ── Professional Experience ──────────────────────────────────────────────────
+\section{Professional Experience}
+
+\position{Application Engineer}{2019 -- 2025}{
+  \textbf{ProtaTECH} --- Dallas, TX
+  \begin{itemize}[leftmargin=20pt, itemsep=2pt]
+    \item Deployed and maintained critical event applications for high-stakes operations including \textbf{Super Bowl} and large-scale public events, achieving \textbf{99.99\% uptime} under real-time load.
+    \item Engineered and optimised data pipelines and application interfaces for efficient real-time data capture and analysis in dynamic field environments.
+    \item Provided on-site technical support and rapid incident response, managing complex networked systems under extreme operational pressure.
+    \item Led frontend architecture decisions using \textbf{React} and \textbf{TypeScript} for internal tooling dashboards.
+  \end{itemize}
+}
+
+\position{Applied AI Systems Developer}{2021 -- Present}{
+  \textbf{Freelance \& Independent Projects}
+  \begin{itemize}[leftmargin=20pt, itemsep=2pt]
+    \item Built \textbf{GenesisTrader} --- an AI-powered trading system integrating Coinbase APIs, predictive analytics, and real-time market intelligence with a Next.js frontend.
+    \item Developed \textbf{Genesis} AI research assistant for autonomous workflow optimisation, multi-agent orchestration, and local LLM integration (LM Studio / DeepSeek).
+    \item Created an \textbf{AI Gameplay Automation System} for Sims~4, using computer vision and reinforcement learning to autonomously control game agents --- built in Python with a React monitoring dashboard.
+    \item Deployed scalable AI safety testing pipelines and multi-agent systems using modern LLM tooling.
+  \end{itemize}
+}
+
+\position{AI Systems Researcher}{2023 -- Present}{
+  \textbf{Safehaven Labs} --- Open Science Initiative
+  \begin{itemize}[leftmargin=20pt, itemsep=2pt]
+    \item Conducting independent research into \textbf{Latent Planning + Autoregressive Generation}, training custom transformer architectures on Apple MPS hardware using PyTorch and HuggingFace.
+    \item Exploring contrastive loss, attention map attribution, and diffusion model fine-tuning as mechanisms for improved latent space coherence.
+    \item Authored research publications on Zenodo (500+ downloads) covering AI systems, climate modelling, and emergent computation.
+  \end{itemize}
+}
+
+% ── Technical Skills ─────────────────────────────────────────────────────────
+\section{Technical Skills}
+
+\begin{multicols}{2}
+\textbf{Frontend \& Web}
+\begin{itemize}[leftmargin=15pt, itemsep=1pt]
+  \item React, Next.js, TypeScript
+  \item Framer Motion, Tailwind CSS
+  \item Responsive Design, Web Perf
+  \item Vanilla CSS, HTML5, SVG
+\end{itemize}
+
+\textbf{AI \& Machine Learning}
+\begin{itemize}[leftmargin=15pt, itemsep=1pt]
+  \item PyTorch, HuggingFace Transformers
+  \item Latent Space \& Diffusion Models
+  \item LLM Integration (LM Studio, OpenAI)
+  \item Reinforcement Learning
+\end{itemize}
+
+\textbf{Backend \& Systems}
+\begin{itemize}[leftmargin=15pt, itemsep=1pt]
+  \item Node.js, REST APIs, WebSockets
+  \item Distributed Systems Architecture
+  \item Real-time Data Pipelines
+  \item Cyber-Physical Resilience
+\end{itemize}
+
+\textbf{Tools \& Platforms}
+\begin{itemize}[leftmargin=15pt, itemsep=1pt]
+  \item Git, GitHub, Vercel, Netlify
+  \item Apple MPS / GPU Training
+  \item Figma, System Design
+  \item Zenodo Open Science
+\end{itemize}
+\end{multicols}
+
+% ── Selected Projects ─────────────────────────────────────────────────────────
+\section{Selected Projects}
+
+\textbf{AI Gameplay Automation System (Sims~4)} \hfill \textit{Python, React, Computer Vision} \\
+Autonomous AI agent that plays and manages a Sims~4 household using computer vision, decision trees, and reinforcement learning. Features a real-time React monitoring dashboard with live game-state telemetry. \\[4pt]
+
+\textbf{GenesisTrader} \hfill \textit{Next.js, TypeScript, Coinbase API} \\
+AI-powered cryptocurrency trading system with predictive analytics, real-time market intelligence, and a high-performance Next.js frontend. Integrates local LLM reasoning for trade signal generation. \\[4pt]
+
+\textbf{AI Systems Research --- Latent Planning + Autoregressive Gen} \hfill \textit{PyTorch, HuggingFace, MPS} \\
+Independent research training custom transformer architectures to explore latent planning as a mechanism for improved autoregressive text and image generation quality. \\[4pt]
+
+\textbf{Digital Portfolio} \hfill \textit{Next.js, TypeScript, Framer Motion} \\
+High-performance editorial portfolio featuring sticky full-viewport art backdrops, glassmorphism cards, parallax animations, and an interactive AI research section.
+
+% ── Selected Publications ─────────────────────────────────────────────────────
+\section{Selected Publications}
+\textit{Full list available at: \href{https://zenodo.org/search?q=Musikavanhu}{zenodo.org/Musikavanhu}}
+
+\begin{itemize}[leftmargin=20pt, itemsep=4pt]
+  \item \textbf{Musikavanhu, T.} (2025). ``SolarTherm-CarbCap (STCC): Integrated Solar-Thermal Carbon Capture for Climate Remediation.'' \href{https://zenodo.org/records/15711985}{DOI: 10.5281/zenodo.15711985}
+  \item \textbf{Musikavanhu, T.} (2025). ``Void One: Emergent Quantum Computation in Room-Temperature Systems.'' \href{https://zenodo.org/records/15486760}{DOI: 10.5281/zenodo.15486760}
+  \item \textbf{Musikavanhu, T.} (2024). ``Quantum Zeta Field Theory: Unifying Framework for Quantum Fields and Mathematical Structures.''
+\end{itemize}
+
+% ── Awards ────────────────────────────────────────────────────────────────────
+\section{Awards \& Recognition}
+
+\begin{itemize}[leftmargin=20pt, itemsep=3pt]
+  \item \textbf{Open Science Impact} (2024--2025): 500+ research downloads across 64+ publications on Zenodo
+  \item \textbf{NASA Recognition} (2025): Acknowledged by former NASA Administrator Dan Goldin for research contributions
+  \item \textbf{High-Stakes Ops} (2019--2025): Zero-downtime delivery for Super Bowl-scale event deployments at ProtaTECH
+\end{itemize}
+
+\vspace{16pt}
+\centerline{\textit{``Building the future --- one component, one model, one breakthrough at a time.''}}
+
+\end{document}
