@@ -166,7 +166,7 @@ function AboutCard({ scrollToSection }: { scrollToSection: (id: string) => void 
               </div>
 
               <p className="text-[13px] md:text-[15px] text-white/50 font-medium mb-4 tracking-wide">
-                Frontend Engineer · AI Integration · Systems Design
+                Full-Stack Engineer · AI Integration · Systems Design
               </p>
 
               <div className="h-px bg-white/10 mb-4" />
@@ -632,41 +632,7 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-4 sm:px-0 pointer-events-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
-              >
-                <motion.button
-                  onClick={() => scrollToSection('research')}
-                  className="glass-button glass-button-primary px-8 sm:px-10 py-3 sm:py-4 rounded-full w-full sm:w-auto text-sm sm:text-base"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Explore My Research
-                </motion.button>
 
-                <motion.a
-                  href="/resume.pdf"
-                  download="Tino_Musikavanhu_Resume.pdf"
-                  className="glass-button px-8 sm:px-10 py-3 sm:py-4 rounded-full w-full sm:w-auto text-sm sm:text-base flex items-center justify-center gap-2"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Download className="w-4 h-4 text-white" />
-                  <span className="text-white">Download Resume</span>
-                </motion.a>
-
-                <motion.button
-                  onClick={() => scrollToSection('contact')}
-                  className="glass-button px-8 sm:px-10 py-3 sm:py-4 rounded-full w-full sm:w-auto text-sm sm:text-base"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Get In Touch
-                </motion.button>
-              </motion.div>
             </motion.div>
 
             {/* Scroll indicator */}
