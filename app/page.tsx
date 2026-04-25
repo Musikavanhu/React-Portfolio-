@@ -117,8 +117,8 @@ function AboutCard({ scrollToSection }: { scrollToSection: (id: string) => void 
       }}
       initial={{ opacity: 0, y: 40, scale: 0.97 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 1, delay: 0.2 }}
-      viewport={{ once: true }}
+      transition={{ duration: 1 }}
+      viewport={{ once: false, margin: "300px" }}
     >
       {/* Card inner: left = portrait (50%), right = content */}
       <div className="flex flex-col md:flex-row" style={{ minHeight: '540px' }}>
@@ -502,22 +502,26 @@ export default function Home() {
           <motion.nav
             initial={{ y: -100, opacity: 0, x: "-50%" }}
             animate={{ y: 0, opacity: 1, x: "-50%" }}
-            transition={{ duration: 1, delay: 0.5, type: "spring", stiffness: 80 }}
-            className={`fixed top-6 left-1/2 z-50 w-[90%] max-w-4xl glass-nav transition-all duration-300 pointer-events-auto shadow-2xl ${isMobileMenuOpen ? 'rounded-3xl' : 'rounded-full'
+            transition={{ duration: 1, type: "spring", stiffness: 80 }}
+            className={`fixed top-3 md:top-6 left-1/2 z-50 w-[94%] md:w-[90%] max-w-6xl glass-nav transition-all duration-300 pointer-events-auto shadow-2xl ${isMobileMenuOpen ? 'rounded-2xl md:rounded-3xl' : 'rounded-full'
               }`}
           >
-            <div className="px-6 py-3 flex items-center justify-between">
-              <div
-                className="text-2xl cursor-pointer font-bold text-white tracking-widest"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                style={{
-                  fontFamily: "'Caveat', 'Brush Script MT', 'Lucida Handwriting', cursive"
-                }}
-              >
-                TM.
+            <div className="px-4 py-2 md:px-6 md:py-3 flex items-center justify-between w-full">
+              {/* Left Logo */}
+              <div className="flex-1 flex justify-start">
+                <div
+                  className="text-xl md:text-3xl cursor-pointer font-bold text-white tracking-widest"
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  style={{
+                    fontFamily: "'Playfair Display', serif"
+                  }}
+                >
+                  TM.
+                </div>
               </div>
 
-              <div className="hidden md:flex flex-1 justify-center space-x-2 lg:space-x-8">
+              {/* Center Links */}
+              <div className="hidden md:flex flex-none justify-center gap-2 lg:gap-6">
                 {[
                   { id: 'about', label: 'About' },
                   { id: 'experience', label: 'Experience' },
@@ -539,23 +543,26 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="hidden md:flex items-center space-x-4">
-                <Link href="/blog" className="text-xs font-medium text-slate-300 hover:text-white transition-colors px-3 py-1.5 rounded-full hover:bg-white/5">Journal</Link>
-                <a href="https://github.com/Musikavanhu" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors hover:scale-110">
-                  <Github className="w-5 h-5" />
-                </a>
-                <a href="https://www.linkedin.com/in/tino-m-630086124" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors hover:scale-110">
-                  <Linkedin className="w-5 h-5" />
-                </a>
+              {/* Right Links & Icons */}
+              <div className="hidden md:flex flex-1 items-center justify-end gap-5">
+                <Link href="/blog" className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-4 py-2 rounded-full hover:bg-white/5">Journal</Link>
+                <div className="flex items-center gap-4">
+                  <a href="https://github.com/Musikavanhu" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors hover:scale-110">
+                    <Github className="w-5 h-5" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/tino-m-630086124" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors hover:scale-110">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
 
               {/* Mobile Menu Toggle Button */}
-              <div className="md:hidden flex items-center">
+              <div className="md:hidden flex items-center justify-end flex-1">
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="text-slate-300 hover:text-white focus:outline-none p-2 rounded-full hover:bg-white/5 transition-colors pointer-events-auto"
+                  className="text-slate-300 hover:text-white focus:outline-none p-1.5 rounded-full hover:bg-white/5 transition-colors pointer-events-auto"
                 >
-                  {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                  {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
               </div>
             </div>
@@ -567,7 +574,7 @@ export default function Home() {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   className="md:hidden overflow-hidden bg-black/40 backdrop-blur-lg border-t border-white/10 rounded-b-[2rem]"
                 >
                   <div className="flex flex-col px-6 py-4 space-y-2">
@@ -615,7 +622,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto w-full mt-24"
             >
               {/* Welcome Intro Text */}
@@ -671,7 +678,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 1.08 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true, margin: '-10%' }}
+            viewport={{ once: false, margin: '-10%' }}
           >
             <img
               src="/about-backdrop.jpg"
@@ -684,8 +691,8 @@ export default function Home() {
               className="absolute inset-0 backdrop-blur-[3px]"
               initial={{ opacity: 1 }}
               whileInView={{ opacity: 0 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: 'easeOut' }}
-              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+              viewport={{ once: false, margin: "300px" }}
             />
           </motion.div>
 
@@ -696,7 +703,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "300px" }}
             >
               About
             </motion.h2>
@@ -704,8 +711,8 @@ export default function Home() {
               className="text-white/60 text-center mb-10 max-w-xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: false, margin: "300px" }}
             >
               Engineer, technologist, and lifelong builder.
             </motion.p>
@@ -724,7 +731,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 1.08 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true, margin: "-10%" }}
+            viewport={{ once: false, margin: "-10%" }}
           >
             <img
               src="/backdrop.jpg"
@@ -739,8 +746,8 @@ export default function Home() {
               className="absolute inset-0 backdrop-blur-[3px]"
               initial={{ opacity: 1 }}
               whileInView={{ opacity: 0 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              viewport={{ once: false, margin: "300px" }}
             />
           </motion.div>
 
@@ -751,7 +758,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, margin: "300px" }}
               >
                 Experience
               </motion.h2>
@@ -759,8 +766,8 @@ export default function Home() {
                 className="text-white/60 text-center mb-16 max-w-xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: false, margin: "300px" }}
               >
                 Building high-performance systems for real-world impact.
               </motion.p>
@@ -777,16 +784,16 @@ export default function Home() {
                 }}
                 initial={{ opacity: 0, y: 40, scale: 0.97 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                viewport={{ once: true }}
+                transition={{ duration: 1 }}
+                viewport={{ once: false, margin: "300px" }}
               >
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: false, margin: "300px" }}
                   >
                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
                       Application Engineer
@@ -798,8 +805,8 @@ export default function Home() {
                     className="mt-4 md:mt-0"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: false, margin: "300px" }}
                   >
                     <span className="px-5 py-2 rounded-full text-sm font-medium text-white/90 border border-white/20"
                       style={{ background: 'rgba(255,255,255,0.1)' }}
@@ -817,8 +824,8 @@ export default function Home() {
                   className="space-y-4"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: false, margin: "300px" }}
                 >
                   {[
                     'Deployed and maintained critical event applications, including Super Bowl operations, ensuring 99.99% uptime for high-stakes, real-time data processing.',
@@ -830,8 +837,8 @@ export default function Home() {
                       className="flex items-start gap-3 text-[15px] text-white/80 leading-relaxed"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 + i * 0.1 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0" />
                       <span>{bullet}</span>
@@ -851,7 +858,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "300px" }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 gradient-text">
                 Current Projects
@@ -868,8 +875,8 @@ export default function Home() {
                 }}
                 initial={{ opacity: 0, y: 40, scale: 0.97 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                viewport={{ once: true }}
+                transition={{ duration: 1 }}
+                viewport={{ once: false, margin: "300px" }}
               >
                 {/* Ambient glow */}
                 <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
@@ -882,8 +889,8 @@ export default function Home() {
                     className="relative overflow-hidden min-h-[300px] md:min-h-[500px]"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    viewport={{ once: true }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: false, margin: "300px" }}
                   >
                     <img
                       src="/sims4-ai-project.gif"
@@ -912,8 +919,8 @@ export default function Home() {
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
@@ -935,8 +942,8 @@ export default function Home() {
                       className="text-[15px] text-slate-300 leading-[1.8] mb-6"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       Built a custom autonomous agent framework that integrates a Python-based Sims 4 mod with an external controller
                       to observe game state, plan actions, and execute behaviors in real time.
@@ -947,8 +954,8 @@ export default function Home() {
                       className="space-y-3 mb-8"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       {[
                         'Real-time AI agent pipeline over a custom socket bridge',
@@ -969,8 +976,8 @@ export default function Home() {
                       className="flex flex-wrap gap-2 mb-8"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.7 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       {['Python', 'AI Agents', 'Socket Comms', 'State Machines', 'Game Modding', 'Heuristic Planning'].map((tech, i) => (
                         <span
@@ -987,8 +994,8 @@ export default function Home() {
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.8 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       <motion.button
                         onClick={() => scrollToSection('projects')}
@@ -1013,8 +1020,8 @@ export default function Home() {
                 }}
                 initial={{ opacity: 0, y: 40, scale: 0.97 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                viewport={{ once: true }}
+                transition={{ duration: 1 }}
+                viewport={{ once: false, margin: "300px" }}
               >
                 {/* Ambient glow */}
                 <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
@@ -1027,8 +1034,8 @@ export default function Home() {
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
@@ -1050,8 +1057,8 @@ export default function Home() {
                       className="text-[15px] text-slate-300 leading-[1.8] mb-6"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       Developed a two-stage neural architecture combining a diffusion-based latent planner with an autoregressive LLM decoder via a learned projection bridge, enabling clear separation of "what to say" from "how to say it".
                     </motion.p>
@@ -1061,8 +1068,8 @@ export default function Home() {
                       className="space-y-3 mb-8"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       {[
                         'Evaluated gated, MLP, and residual projection architectures',
@@ -1083,8 +1090,8 @@ export default function Home() {
                       className="flex flex-wrap gap-2"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.7 }}
-                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
                     >
                       {['Neural Archs', 'Latent Space', 'Contrastive Loss', 'Attention Maps', 'MPS Training'].map((tech, i) => (
                         <span
@@ -1103,8 +1110,8 @@ export default function Home() {
                     className="relative overflow-hidden min-h-[300px] md:min-h-full order-1 md:order-2"
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    viewport={{ once: true }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: false, margin: "300px" }}
                   >
                     <img
                       src="/llmwalking.gif"
@@ -1176,7 +1183,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, margin: "300px" }}
               >
                 Core Skills & Expertise
               </motion.h2>
@@ -1184,8 +1191,8 @@ export default function Home() {
                 className="text-white/60 text-center mb-16 max-w-xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: false, margin: "300px" }}
               >
                 Technologies and tools I work with every day.
               </motion.p>
@@ -1197,7 +1204,7 @@ export default function Home() {
                 <motion.div
                   className="group col-span-2 md:row-span-2 relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden p-6 md:p-10 flex flex-col justify-end items-center text-center cursor-pointer transition-all duration-300 hover:scale-[1.02] min-h-[200px] md:min-h-0"
                   style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(30px) saturate(1.5)', border: '1px solid rgba(255,255,255,0.1)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1)' }}
-                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} viewport={{ once: true }}
+                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} viewport={{ once: false, margin: "300px" }}
                   onClick={() => setSkillModal('ai')}
                 >
                   <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-emerald-500/10 to-transparent pointer-events-none" />
@@ -1224,7 +1231,7 @@ export default function Home() {
                 <motion.div
                   className="group col-span-1 row-span-1 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden p-5 md:p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 hover:scale-[1.03]"
                   style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(30px) saturate(1.5)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} viewport={{ once: true }}
+                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} viewport={{ once: false, margin: "300px" }}
                   onClick={() => setSkillModal('react')}
                 >
                   <svg className="w-10 h-10 md:w-12 md:h-12 mb-2 md:mb-3" viewBox="0 0 48 48" fill="none">
@@ -1241,7 +1248,7 @@ export default function Home() {
                 <motion.div
                   className="group col-span-1 row-span-1 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden p-5 md:p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 hover:scale-[1.03]"
                   style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(30px) saturate(1.5)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }} viewport={{ once: true }}
+                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} viewport={{ once: false, margin: "300px" }}
                   onClick={() => setSkillModal('typescript')}
                 >
                   <svg className="w-10 h-10 md:w-12 md:h-12 mb-2 md:mb-3" viewBox="0 0 48 48" fill="none">
@@ -1256,7 +1263,7 @@ export default function Home() {
                 <motion.div
                   className="group col-span-1 row-span-1 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden p-5 md:p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 hover:scale-[1.03]"
                   style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(30px) saturate(1.5)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }} viewport={{ once: true }}
+                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} viewport={{ once: false, margin: "300px" }}
                   onClick={() => setSkillModal('pytorch')}
                 >
                   <svg className="w-10 h-10 md:w-12 md:h-12 mb-2 md:mb-3" viewBox="0 0 48 48" fill="none">
@@ -1272,7 +1279,7 @@ export default function Home() {
                 <motion.div
                   className="group col-span-1 row-span-1 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden p-5 md:p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 hover:scale-[1.03]"
                   style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(30px) saturate(1.5)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 }} viewport={{ once: true }}
+                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} viewport={{ once: false, margin: "300px" }}
                   onClick={() => setSkillModal('node')}
                 >
                   <svg className="w-10 h-10 md:w-12 md:h-12 mb-2 md:mb-3" viewBox="0 0 48 48" fill="none">
@@ -1288,7 +1295,7 @@ export default function Home() {
                 <motion.div
                   className="group col-span-2 row-span-1 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden px-6 py-5 md:px-8 md:py-6 flex items-center justify-between cursor-pointer transition-all duration-300 hover:scale-[1.02]"
                   style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(30px) saturate(1.5)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }} viewport={{ once: true }}
+                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} viewport={{ once: false, margin: "300px" }}
                   onClick={() => setSkillModal('statemachines')}
                 >
                   <div>
@@ -1303,7 +1310,7 @@ export default function Home() {
                 <motion.div
                   className="group col-span-2 row-span-1 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden px-6 py-5 md:px-8 md:py-6 flex items-center justify-between cursor-pointer transition-all duration-300 hover:scale-[1.02]"
                   style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(30px) saturate(1.5)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 }} viewport={{ once: true }}
+                  initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} viewport={{ once: false, margin: "300px" }}
                   onClick={() => setSkillModal('telemetry')}
                 >
                   <div>
@@ -1513,7 +1520,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "300px" }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
                 Let's Build the Future Together

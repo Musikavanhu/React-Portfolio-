@@ -33,7 +33,13 @@ function getTextTimeline(scrollFraction: number) {
   const fadeT = Math.min(Math.max((scrollFraction - fadeStart) / (fadeEnd - fadeStart), 0), 1)
   const globalOpacity = 1 - fadeT
 
-  return { nameLetters, roleOpacity: roleEased, roleY: (1 - roleEased) * 30, globalOpacity }
+  // Card fades in slightly before the text
+  const cardStart = 0.04
+  const cardEnd = 0.20
+  const cardT = Math.min(Math.max((scrollFraction - cardStart) / (cardEnd - cardStart), 0), 1)
+  const cardOpacity = 1 - Math.pow(1 - cardT, 3)
+
+  return { nameLetters, roleOpacity: roleEased, roleY: (1 - roleEased) * 30, globalOpacity, cardOpacity }
 }
 
 export default function ScrollCanvas() {
@@ -45,6 +51,8 @@ export default function ScrollCanvas() {
   const [parallax, setParallax] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
+    let ticking = false
+
     const handleScroll = () => {
       const container = containerRef.current
       if (!container) return
@@ -52,8 +60,8 @@ export default function ScrollCanvas() {
       const scrollTop = window.scrollY
       const containerTop = container.offsetTop
       const containerHeight = container.clientHeight
-      const maxScroll = containerTop + containerHeight - window.innerHeight
-      const scrollFraction = Math.min(Math.max((scrollTop - containerTop) / (maxScroll - containerTop), 0), 1)
+      const maxScroll = Math.max(containerTop + containerHeight - window.innerHeight, 1)
+      const scrollFraction = Math.min(Math.max((scrollTop - containerTop) / maxScroll, 0), 1)
 
       // Update text animation state
       setTextState(getTextTimeline(scrollFraction))
@@ -61,9 +69,18 @@ export default function ScrollCanvas() {
       // Scrub the video timeline based on scroll percentage!
       const video = videoRef.current
       if (video && !isNaN(video.duration) && video.duration > 0) {
-        requestAnimationFrame(() => {
-          video.currentTime = scrollFraction * video.duration
-        })
+        // Prevent video from reaching absolute end to avoid WebKit "ended" state freeze
+        const safeDuration = video.duration - 0.05
+        const targetTime = scrollFraction * safeDuration
+        
+        // Use requestAnimationFrame for smoother scrubbing
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            video.currentTime = targetTime
+            ticking = false
+          })
+          ticking = true
+        }
       }
 
       // Fade out video once past the scroll zone
@@ -86,20 +103,31 @@ export default function ScrollCanvas() {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll, { passive: true })
     window.addEventListener('mousemove', handleMouseMove, { passive: true })
     
     // Initial call to set state
     handleScroll()
 
-    // Add listener to scrub to 0 when video metadata is loaded
+    // Setup video properly
     const video = videoRef.current
     if (video) {
       video.pause() // force it paused
-      video.addEventListener('loadedmetadata', handleScroll)
+      
+      const onVideoReady = () => {
+        handleScroll()
+      }
+
+      if (video.readyState >= 1) {
+        onVideoReady()
+      } else {
+        video.addEventListener('loadedmetadata', onVideoReady)
+      }
     }
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
       window.removeEventListener('mousemove', handleMouseMove)
       if (video) {
         video.removeEventListener('loadedmetadata', handleScroll)
@@ -128,70 +156,78 @@ export default function ScrollCanvas() {
         }}
       />
       
-      {/* Dark overlay to ensure text legibility */}
-      <div 
-        className="fixed inset-0 z-[1] bg-black/40 pointer-events-none"
-        style={{ opacity: videoOpacity }}
-      />
-
       {/* ── Scroll-scrubbed Name & Role Text Overlay ── */}
       <div
-        className="fixed inset-0 z-[5] flex flex-col items-center justify-center pointer-events-none select-none"
+        className="fixed inset-0 z-[5] flex flex-col items-center justify-center pointer-events-none select-none px-4 md:px-8"
         style={{ opacity: textState.globalOpacity }}
       >
-        {/* Name: "Tino Musikavanhu" */}
-        <div className="flex flex-wrap justify-center" aria-label="Tino Musikavanhu">
-          {textState.nameLetters.map((letter, i) => (
-            <span
-              key={i}
-              className="inline-block text-white font-bold"
-              style={{
-                fontSize: 'clamp(2.5rem, 8vw, 7rem)',
-                fontFamily: "'Inter', system-ui, sans-serif",
-                letterSpacing: '-0.02em',
-                lineHeight: 1.1,
-                opacity: letter.opacity,
-                transform: `translateY(${letter.y}px)`,
-                filter: `blur(${letter.blur}px)`,
-                textShadow: '0 4px 30px rgba(0,0,0,0.5), 0 0 80px rgba(59,130,246,0.15)',
-                marginRight: letter.char === ' ' ? '0.3em' : '0',
-                width: letter.char === ' ' ? '0.3em' : 'auto',
-                transition: 'none',
-              }}
-            >
-              {letter.char === ' ' ? '\u00A0' : letter.char}
-            </span>
-          ))}
-        </div>
-
-        {/* Role subtitle */}
-        <div
-          className="mt-4 md:mt-6"
-          style={{
-            opacity: textState.roleOpacity,
-            transform: `translateY(${textState.roleY}px)`,
-            filter: `blur(${(1 - textState.roleOpacity) * 4}px)`,
+        {/* Glass Card Container */}
+        <div 
+          className="relative w-full max-w-5xl px-6 py-16 md:px-16 md:py-24 rounded-[2.5rem] bg-black/20 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden flex flex-col items-center justify-center"
+          style={{ 
+            opacity: textState.cardOpacity,
+            transform: `translateY(${(1 - textState.cardOpacity) * 40}px)`,
+            transition: 'none'
           }}
         >
-          <p
-            className="text-white/90 tracking-[0.25em] uppercase text-center"
+          {/* Subtle inner top light for glass effect */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
+
+          {/* Name: "Tino Musikavanhu" */}
+          <div className="flex flex-wrap justify-center relative z-10" aria-label="Tino Musikavanhu">
+            {textState.nameLetters.map((letter, i) => (
+              <span
+                key={i}
+                className="inline-block text-white font-bold"
+                style={{
+                  fontSize: 'clamp(2.5rem, 8vw, 7rem)',
+                  fontFamily: "'Inter', system-ui, sans-serif",
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.1,
+                  opacity: letter.opacity,
+                  transform: `translateY(${letter.y}px)`,
+                  filter: `blur(${letter.blur}px)`,
+                  textShadow: '0 4px 30px rgba(0,0,0,0.5), 0 0 80px rgba(59,130,246,0.15)',
+                  marginRight: letter.char === ' ' ? '0.3em' : '0',
+                  width: letter.char === ' ' ? '0.3em' : 'auto',
+                  transition: 'none',
+                }}
+              >
+                {letter.char === ' ' ? '\u00A0' : letter.char}
+              </span>
+            ))}
+          </div>
+
+          {/* Role subtitle */}
+          <div
+            className="mt-6 md:mt-8 relative z-10"
             style={{
-              fontSize: 'clamp(0.75rem, 2vw, 1.25rem)',
-              fontFamily: "'Inter', system-ui, sans-serif",
-              fontWeight: 400,
-              textShadow: '0 2px 20px rgba(0,0,0,0.6)',
+              opacity: textState.roleOpacity,
+              transform: `translateY(${textState.roleY}px)`,
+              filter: `blur(${(1 - textState.roleOpacity) * 4}px)`,
             }}
           >
-            Engineer &amp; Technologist
-          </p>
+            <p
+              className="text-white/90 tracking-[0.25em] uppercase text-center"
+              style={{
+                fontSize: 'clamp(0.75rem, 2vw, 1.25rem)',
+                fontFamily: "'Inter', system-ui, sans-serif",
+                fontWeight: 400,
+                textShadow: '0 2px 20px rgba(0,0,0,0.6)',
+              }}
+            >
+              Engineer &amp; Technologist
+            </p>
 
-          <div
-            className="mx-auto mt-4 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent"
-            style={{
-              width: `${textState.roleOpacity * 200}px`,
-              opacity: textState.roleOpacity,
-            }}
-          />
+            <div
+              className="mx-auto mt-5 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent"
+              style={{
+                width: `${textState.roleOpacity * 200}px`,
+                opacity: textState.roleOpacity,
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
