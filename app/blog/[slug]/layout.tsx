@@ -3,7 +3,7 @@ import postsData from '@/data/posts.json'
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = postsData.find((p: any) => p.slug === params.slug)
-  
+
   if (!post) {
     return {
       title: 'Post Not Found',
@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   // Set the base URL to your Netlify deployment URL so social cards can resolve absolute image links
-  const siteUrl = 'https://tinomusikavanhu.netlify.app' 
+  const siteUrl = 'https://tinomusik.netlify.app'
   const imageUrl = post.image ? `${siteUrl}${post.image}` : `${siteUrl}/selfie.png`
 
   return {
