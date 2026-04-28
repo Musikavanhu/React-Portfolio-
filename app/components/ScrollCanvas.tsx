@@ -175,27 +175,36 @@ export default function ScrollCanvas() {
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
 
           {/* Name: "Tino Musikavanhu" */}
-          <div className="flex flex-wrap justify-center relative z-10" aria-label="Tino Musikavanhu">
-            {textState.nameLetters.map((letter, i) => (
-              <span
-                key={i}
-                className="inline-block text-white font-bold"
-                style={{
-                  fontSize: 'clamp(2.5rem, 8vw, 7rem)',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  letterSpacing: '-0.02em',
-                  lineHeight: 1.1,
-                  opacity: letter.opacity,
-                  transform: `translateY(${letter.y}px)`,
-                  filter: `blur(${letter.blur}px)`,
-                  textShadow: '0 4px 30px rgba(0,0,0,0.5), 0 0 80px rgba(59,130,246,0.15)',
-                  marginRight: letter.char === ' ' ? '0.3em' : '0',
-                  width: letter.char === ' ' ? '0.3em' : 'auto',
-                  transition: 'none',
-                }}
-              >
-                {letter.char === ' ' ? '\u00A0' : letter.char}
-              </span>
+          <div className="flex flex-col items-center justify-center relative z-10" aria-label="Tino Musikavanhu">
+            {textState.nameLetters.reduce((words: any[][], letter) => {
+              if (letter.char === ' ') {
+                words.push([]);
+              } else {
+                words[words.length - 1].push(letter);
+              }
+              return words;
+            }, [[]]).map((wordLetters, wordIndex) => (
+              <div key={wordIndex} className="flex flex-nowrap">
+                {wordLetters.map((letter: any, i: number) => (
+                  <span
+                    key={i}
+                    className="inline-block text-white font-bold"
+                    style={{
+                      fontSize: 'clamp(2.2rem, 6vw, 5.5rem)',
+                      fontFamily: "'Inter', system-ui, sans-serif",
+                      letterSpacing: '-0.02em',
+                      lineHeight: 1.1,
+                      opacity: letter.opacity,
+                      transform: `translateY(${letter.y}px)`,
+                      filter: `blur(${letter.blur}px)`,
+                      textShadow: '0 4px 30px rgba(0,0,0,0.5), 0 0 80px rgba(59,130,246,0.15)',
+                      transition: 'none',
+                    }}
+                  >
+                    {letter.char}
+                  </span>
+                ))}
+              </div>
             ))}
           </div>
 
