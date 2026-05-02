@@ -4,9 +4,10 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Github, Linkedin, Mail, ChevronLeft, ChevronRight } from 'lucide-react'
+import EditorialChart from '../../components/EditorialChart'
 import postsData from '@/data/posts.json'
 
-type ContentBlock = { type: string; text: string }
+type ContentBlock = { type: string; text: string; chartData?: any }
 type Post = {
   slug: string
   title: string
@@ -156,6 +157,13 @@ export default function BlogPost() {
                 >
                   {block.text}
                 </h2>
+              )
+            }
+            if (block.type === 'chart') {
+              return (
+                <div key={i} className="my-8">
+                  <EditorialChart {...block.chartData} />
+                </div>
               )
             }
             return (
