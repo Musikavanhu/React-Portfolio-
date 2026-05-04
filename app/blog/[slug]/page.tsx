@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Github, Linkedin, Mail, ChevronLeft, ChevronRight } from 'lucide-react'
 import EditorialChart from '../../components/EditorialChart'
+import GlossaryTooltip from '../../components/GlossaryTooltip'
 import postsData from '@/data/posts.json'
 
 type ContentBlock = { type: string; text: string; chartData?: any }
@@ -19,6 +20,44 @@ type Post = {
   image: string
   excerpt: string
   content: ContentBlock[]
+}
+
+const GLOSSARY: Record<string, string> = {
+  "AWGN channel": "Additive White Gaussian Noise channel: A standard mathematical model used to mimic the effect of random environmental background noise on transmitted data.",
+  "Tanner graph": "A bipartite graph used to visually represent the constraints (parity checks) and variables (bits) of an error-correcting code.",
+  "Mixture-of-Experts": "A machine learning architecture where multiple specialized sub-networks (experts) are conditionally activated based on the input, drastically reducing computational cost.",
+  "model distillation": "The process of training a smaller, more efficient AI model to replicate the behavior and outputs of a much larger, more complex proprietary model.",
+  "stablecoins": "Digital currencies designed to maintain a stable value by being pegged to a reserve asset, most commonly the U.S. dollar.",
+  "Belief Propagation": "An iterative message-passing algorithm used to calculate marginal distributions or probabilities on graphical models like Tanner graphs.",
+  "LDPC": "Low-Density Parity-Check code: A highly efficient linear error-correcting code capable of approaching the theoretical limit of channel capacity."
+}
+
+function parseTextWithGlossary(text: string) {
+  let parts: (string | JSX.Element)[] = [text];
+  
+  Object.keys(GLOSSARY).forEach(term => {
+    const newParts: (string | JSX.Element)[] = [];
+    // Only match exact terms, case-insensitive, with word boundaries
+    const regex = new RegExp(`\\b(${term})\\b`, 'gi');
+    
+    parts.forEach(part => {
+      if (typeof part === 'string') {
+        const split = part.split(regex);
+        split.forEach((s) => {
+          if (s.toLowerCase() === term.toLowerCase()) {
+            newParts.push(<GlossaryTooltip key={Math.random()} term={s} definition={GLOSSARY[term]} />);
+          } else if (s) {
+            newParts.push(s);
+          }
+        });
+      } else {
+        newParts.push(part);
+      }
+    });
+    parts = newParts;
+  });
+  
+  return parts;
 }
 
 const posts: Post[] = postsData as Post[]
@@ -168,7 +207,7 @@ export default function BlogPost() {
             }
             return (
               <p key={i} className="text-[17px] md:text-[18px] text-[#333] leading-[1.85]">
-                {block.text}
+                {parseTextWithGlossary(block.text)}
               </p>
             )
           })}
