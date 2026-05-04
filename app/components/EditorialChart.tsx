@@ -9,11 +9,11 @@ export default function EditorialChart({ data, title, type = 'bar', unit = '', d
         {description && <p className="text-sm text-[#666] mb-8 font-medium">{description}</p>}
         
         <div className="flex flex-col md:flex-row gap-6 relative">
-          {/* Petrodollar Side */}
+          {/* Left Side */}
           <div className="flex-1 border border-[#1a1a1a]/10 rounded-lg p-6 bg-[#f8f8f6]">
-            <h4 className="text-xs uppercase tracking-widest text-[#888] font-bold mb-6 pb-2 border-b border-[#1a1a1a]/10">The Petrodollar (1974–Present)</h4>
+            <h4 className="text-xs uppercase tracking-widest text-[#888] font-bold mb-6 pb-2 border-b border-[#1a1a1a]/10">{data.leftTitle || 'The Petrodollar (1974–Present)'}</h4>
             <div className="space-y-5">
-              {data.petro.map((item: any, i: number) => (
+              {data.left.map((item: any, i: number) => (
                 <div key={i}>
                   <div className="text-[10px] uppercase tracking-wider text-[#999] mb-1">{item.label}</div>
                   <div className="text-sm font-semibold text-[#1a1a1a]">{item.value}</div>
@@ -31,14 +31,14 @@ export default function EditorialChart({ data, title, type = 'bar', unit = '', d
             </div>
           </div>
           
-          {/* AI-Dollar Side */}
+          {/* Right Side */}
           <div className="flex-1 border border-[#1a1a1a] rounded-lg p-6 bg-[#1a1a1a] text-white relative overflow-hidden group">
             {/* Subtle glow effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
             
-            <h4 className="text-xs uppercase tracking-widest text-white/50 font-bold mb-6 pb-2 border-b border-white/20">The AI-Dollar (Emerging)</h4>
+            <h4 className="text-xs uppercase tracking-widest text-white/50 font-bold mb-6 pb-2 border-b border-white/20">{data.rightTitle || 'The AI-Dollar (Emerging)'}</h4>
             <div className="space-y-5 relative z-10">
-              {data.ai.map((item: any, i: number) => (
+              {data.right.map((item: any, i: number) => (
                 <div key={i}>
                   <div className="text-[10px] uppercase tracking-wider text-white/40 mb-1">{item.label}</div>
                   <motion.div 
