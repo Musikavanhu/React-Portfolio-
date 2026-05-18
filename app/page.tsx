@@ -171,12 +171,14 @@ function AboutCard({ scrollToSection }: { scrollToSection: (id: string) => void 
 
               <div className="h-px bg-white/10 mb-4" />
 
-              <p className="text-[14px] md:text-[15px] lg:text-[16px] text-white/80 leading-[1.8] mb-5">
-                Building responsive, high-performance web apps with{' '}
-                <span className="text-white font-semibold">React</span> &{' '}
-                <span className="text-white font-semibold">TypeScript</span>. Passionate about
-                clean UX, AI-driven features, and pushing what&apos;s possible on the web. Bringing 5 years of industry experience to the table.
-              </p>
+              <div className="text-[13px] md:text-[14px] lg:text-[15px] text-white/80 leading-[1.8] mb-5 overflow-y-auto pr-2 custom-scrollbar" style={{ maxHeight: '130px' }}>
+                <p className="mb-2">
+                  My full name is Tinotenda Musikavanhu, but professionally, I prefer to be addressed as Tino. My passion for software development emerged when I aspired to establish my own business. In this endeavor, I learned how to develop iOS applications and collaborated with a team of skilled professionals, including a senior engineer. This experience served as my initial exposure to the tech industry and sparked my curiosity to explore further. Over time, I immersed myself in multiple programming languages, and I was fortunate enough to share my knowledge with a vast audience of over 30,000 followers on social media platforms. What began as simple projects utilizing online resources transformed into personally gratifying work, and I even ventured into the realm of tutoring.
+                </p>
+                <p>
+                  Overall, my journey into software development has been one of self-discovery, learning, and growth. I am confident that my experience, coupled with my passion for technology, has provided me with a solid foundation to excel in this field.
+                </p>
+              </div>
 
               {/* Skill pills */}
               <div className="flex flex-wrap gap-2">
@@ -234,11 +236,11 @@ function AboutCard({ scrollToSection }: { scrollToSection: (id: string) => void 
                   HU
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-[15px] md:text-[16px] leading-tight">Harvard University</p>
-                  <p className="text-white/50 text-[12px] mt-0.5">Cambridge, MA</p>
-                  <p className="text-white/70 text-[13px] md:text-[14px] mt-1.5 leading-relaxed">
-                    In Progress
-                  </p>
+                  <p className="text-white font-semibold text-[15px] md:text-[16px] leading-tight">Harvard University </p>
+                  <p className="text-white/50 text-[12px] mt-0.5">Cambridge, Massachusetts</p>
+                  {/* <div className="text-white/70 text-[12px] md:text-[13px] mt-1.5 leading-relaxed overflow-y-auto pr-2 custom-scrollbar" style={{ maxHeight: '90px' }}>
+                    An intensive and comprehensive course covering a wide range of computer science topics. Acquired expertise in multiple programming languages, including JavaScript , Sql , and C++, and gained hands-on experience in software development, algorithms, data structures, and artificial intelligence. Developed strong analytical and problem-solving skills, enabling the ability to analyze complex problems and develop effective solutions. Participated in collaborative projects and worked with diverse teams, fostering excellent communication and teamwork abilities. Completed the program with a solid understanding of computer science principles and practices, ready to apply this knowledge to real-world challenges.
+                  </div> */}
                 </div>
               </div>
             </motion.div>
@@ -787,64 +789,113 @@ export default function Home() {
                 transition={{ duration: 1 }}
                 viewport={{ once: false, margin: "300px" }}
               >
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                {/* Safehaven */}
+                <div className="mb-12">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: false, margin: "300px" }}
+                    >
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                        Software Engineer
+                      </h3>
+                      <h4 className="text-lg text-white/80 font-medium mb-1">Safehaven</h4>
+                    </motion.div>
+                    <motion.div
+                      className="mt-4 md:mt-0"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      viewport={{ once: false, margin: "300px" }}
+                    >
+                      <span className="px-5 py-2 rounded-full text-sm font-medium text-white/90 border border-white/20"
+                        style={{ background: 'rgba(255,255,255,0.1)' }}
+                      >
+                        Software Development
+                      </span>
+                    </motion.div>
+                  </div>
+
+                  <motion.p
+                    className="text-[15px] text-white/80 leading-relaxed mb-6"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: false, margin: "300px" }}
                   >
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                      Application Engineer
-                    </h3>
-                    <h4 className="text-lg text-white/80 font-medium mb-1">ProtaTECH</h4>
-                    <p className="text-white/50 text-sm"> Dallas, TX</p>
-                  </motion.div>
-                  <motion.div
-                    className="mt-4 md:mt-0"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: false, margin: "300px" }}
-                  >
-                    <span className="px-5 py-2 rounded-full text-sm font-medium text-white/90 border border-white/20"
-                      style={{ background: 'rgba(255,255,255,0.1)' }}
-                    >
-                      High-Stakes Ops
-                    </span>
-                  </motion.div>
+                    Develop, maintain, and enhance Safehaven's software products using JavaScript and other relevant technologies. Collaborated with cross-functional teams including designers, product managers, and other developers to implement new features and functionality. Wrote clean, efficient, and maintainable code that adheres to industry standards and best practices. Conducted code reviews and provide constructive feedback to other team members to ensure high-quality codebase.Ensure that software products are tested thoroughly and perform optimally across various platforms and browsers.Stayed up-to-date with the latest trends and advancements in JavaScript and related technologies, and incorporate them into the product development process.Participated in the development of technical documentation, user manuals, and other related materials.Troubleshoot and resolve technical issues reported by users, and provide timely support as needed.
+                  </motion.p>
                 </div>
 
-                {/* Divider */}
                 <div className="h-px bg-white/10 mb-8" />
 
-                {/* Bullets */}
-                <motion.ul
-                  className="space-y-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: false, margin: "300px" }}
-                >
-                  {[
-                    'Deployed and maintained critical event applications, including Super Bowl operations, ensuring 99.99% uptime for high-stakes, real-time data processing.',
-                    'Provided on-site technical support and rapid incident response for large-scale public events, managing complex networked systems under pressure.',
-                    'Designed and optimized data pipelines and application interfaces for efficient data capture and analysis in dynamic environments.',
-                  ].map((bullet, i) => (
-                    <motion.li
-                      key={i}
-                      className="flex items-start gap-3 text-[15px] text-white/80 leading-relaxed"
-                      initial={{ opacity: 0, x: -10 }}
+                {/* Protatech */}
+                <div>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5 + i * 0.1 }}
+                      transition={{ duration: 0.8 }}
                       viewport={{ once: false, margin: "300px" }}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0" />
-                      <span>{bullet}</span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                        Software Engineer
+                      </h3>
+                      <h4 className="text-lg text-white/80 font-medium mb-1">Protatech</h4>
+                    </motion.div>
+                    <motion.div
+                      className="mt-4 md:mt-0"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      viewport={{ once: false, margin: "300px" }}
+                    >
+                      <span className="px-5 py-2 rounded-full text-sm font-medium text-white/90 border border-white/20"
+                        style={{ background: 'rgba(255,255,255,0.1)' }}
+                      >
+                        Database & App Dev
+                      </span>
+                    </motion.div>
+                  </div>
+
+                  <motion.p
+                    className="text-[15px] text-white/80 leading-relaxed mb-6"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: false, margin: "300px" }}
+                  >
+                    Experienced Database Analyst and Developer with a proven track record of designing, developing, and maintaining complex databases for various applications. Adept at working collaboratively with cross-functional teams to understand business requirements and ensuring that database solutions meet those requirements. Possesses a strong ability to analyze and forecast potential database concerns, developing effective solutions and streamlining processes. Exceptional communication skills and proficiency in multiple programming languages including Angular, SQL, and Swift. Demonstrated success in enhancing client response time and delivering products ahead of schedule.
+                  </motion.p>
+
+                  <motion.ul
+                    className="space-y-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: false, margin: "300px" }}
+                  >
+                    {[
+                      'Analyzed and Foretasted Database concerns for the NFL’s Employee management database on site at the Super Bowl. Executed more than 5,000 employee verifications, which Streamlined to 15% of all attendance to be assigned perfectly.',
+                      'Supported a new enterprise application in the Angular framework for risk management. Redesigned 75% of the existing database structure;Later shaped the product delivery to be assigned to the client two days earlier.',
+                      'Streamlined current bugs of employee management application directly with clients. Client response time and remedy now enhanced to be 20% faster with new hours of operation.',
+                    ].map((bullet, i) => (
+                      <motion.li
+                        key={i}
+                        className="flex items-start gap-3 text-[15px] text-white/80 leading-relaxed"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5 + i * 0.1 }}
+                        viewport={{ once: false, margin: "300px" }}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0" />
+                        <span>{bullet}</span>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                </div>
               </motion.div>
             </div>
           </div>

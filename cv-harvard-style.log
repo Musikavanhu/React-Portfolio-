@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  21 APR 2026 12:34
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  18 MAY 2026 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -573,47 +573,40 @@ ndard glyph set (RS)
 
 [1
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 180--182
+] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 176--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--185
+Underfull \hbox (badness 10000) in paragraph at lines 179--181
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--184
 
  []
 
 
 
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 186--188
+[3]
 
- []
-
-
-
-[3] (./cv-harvard-style.aux)
+[4] (./cv-harvard-style.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-
-
-Package rerunfilecheck Warning: File `cv-harvard-style.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `cv-harvard-style.out':
-(rerunfilecheck)             Before: 5A86B4E8202BF6C7742E7C183BB60D17;1121
-(rerunfilecheck)             After:  E0E7CD0760993A4F7D38EBCAF92DDF12;955.
+Package rerunfilecheck Info: File `cv-harvard-style.out' has not changed.
+(rerunfilecheck)             Checksum: E0E7CD0760993A4F7D38EBCAF92DDF12;955.
  ) 
 Here is how much of TeX's memory you used:
  15314 strings out of 473832
  289128 string characters out of 5729482
- 780215 words of memory out of 5000000
+ 782215 words of memory out of 5000000
  38229 multiletter control sequences out of 15000+600000
  559373 words of font info for 59 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 79i,5n,93p,1013b,458s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,5n,93p,1013b,576s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on cv-harvard-style.pdf (3 pages).
+Output written on cv-harvard-style.pdf (4 pages).
