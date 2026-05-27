@@ -2,17 +2,17 @@
   {
     "slug": "phase-1-simulator-architecture-technical-defense",
     "title": "Phase 1 Simulator Architecture & Technical Defense",
-    "subtitle": "Solidifying the physical and computational foundation of the neural micro-probe simulator for the WIOA review.",
+    "subtitle": "Solidifying the physical and computational foundation of the neural micro-probe simulator.",
     "date": "2026-05-26",
     "category": "Systems Architecture",
     "readTime": "5 min read",
     "featured": true,
-    "image": "/micro_probe_simulator.png",
+    "image": "/net.png",
     "excerpt": "An in-depth systems architecture and mechanical defense of the neural micro-probe simulator, modeling Euler buckling physics, CVD-deposition materials, and 3D array insertion mechanics.",
     "content": [
       {
         "type": "heading",
-        "text": "🧠 Architect's Reflection"
+        "text": "Architect's Reflection"
       },
       {
         "type": "paragraph",
