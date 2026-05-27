@@ -1,7 +1,7 @@
 [
   {
-    "slug": "phase-1-simulator-architecture-technical-defense",
-    "title": "Phase 1 Simulator Architecture & Technical Defense",
+    "slug": "closed-loop-biophysical-and-computational-simulator",
+    "title": "Closed-loop biophysical and computational simulator",
     "subtitle": "Solidifying the physical and computational foundation of the neural micro-probe simulator.",
     "date": "2026-05-26",
     "category": "Systems Architecture",
@@ -12,11 +12,11 @@
     "content": [
       {
         "type": "heading",
-        "text": "Architect's Reflection"
+        "text": "My Reflection"
       },
       {
         "type": "paragraph",
-        "text": "This project bridges the gap between high-level data orchestration and ground-truth physical mechanics. The simulator isn't just about writing Python; it’s about modeling the physical intersection of material science, tissue interaction, and real-time signal processing pipelines. Below is the blueprint of what I've built, the physics governing it, and the roadmap for what to master next."
+        "text": "This project bridges the gap between data orchestration and physical mechanics. The simulator isn't just about writing code; it’s about modeling the physical intersection of material science, tissue interaction, and real-time signal processing pipelines. Below is the blueprint of what I've built, the physics governing it."
       },
       {
         "type": "heading",
