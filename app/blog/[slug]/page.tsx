@@ -29,7 +29,14 @@ const GLOSSARY: Record<string, string> = {
   "model distillation": "The process of training a smaller, more efficient AI model to replicate the behavior and outputs of a much larger, more complex proprietary model.",
   "stablecoins": "Digital currencies designed to maintain a stable value by being pegged to a reserve asset, most commonly the U.S. dollar.",
   "Belief Propagation": "An iterative message-passing algorithm used to calculate marginal distributions or probabilities on graphical models like Tanner graphs.",
-  "LDPC": "Low-Density Parity-Check code: A highly efficient linear error-correcting code capable of approaching the theoretical limit of channel capacity."
+  "LDPC": "Low-Density Parity-Check code: A highly efficient linear error-correcting code capable of approaching the theoretical limit of channel capacity.",
+  "Euler buckling": "A mathematical model describing physical failure under compressive stress, predicting the maximum load a column can bear before bending.",
+  "Parylene-C": "The gold-standard conformal coating material in bioelectromechanics, famous for high pinhole-free electrical insulation and biocompatibility.",
+  "PDMS": "Polydimethylsiloxane: A highly flexible silicone elastomer frequently used in soft lithography and microfluidics, representing extremely low stiffness (2 MPa).",
+  "Tungsten": "A high-stiffness refractory metal (411 GPa) historically used in microwires, but known to cause mechanical mismatch and chronic glial scarring in tissue.",
+  "Silicon": "The foundational semiconductor substrate (160 GPa) utilized in MEMS micro-probes prior to active polymer encapsulation.",
+  "agarose phantom": "A hydrogel material used to emulate the mechanical and viscoelastic properties of brain tissue for insertion testing.",
+  "BrainFlow": "An open-source library designed to stream, parse, and analyze biosensor data from diverse EEG and BCI hardware boards."
 }
 
 function parseTextWithGlossary(text: string) {
