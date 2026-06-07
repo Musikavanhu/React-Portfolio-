@@ -88,8 +88,7 @@ elements.append(
          Paragraph('2016 &ndash; 2020', date_style)]
     ], colWidths=[CONTENT_W*0.65, CONTENT_W*0.35])
 )
-elements.append(Paragraph('Bachelor of Science &mdash; Computer Science', ParagraphStyle('Major', parent=body_style, fontName='Helvetica-Bold', fontSize=9.5, textColor=TEXT_DARK, spaceBefore=2)))
-elements.append(Paragraph('Emphasis: Systems Engineering &amp; Artificial Intelligence', detail_style))
+elements.append(Paragraph('Systems Engineering &amp; Artificial Intelligence', ParagraphStyle('Major', parent=body_style, fontName='Helvetica-Bold', fontSize=9.5, textColor=TEXT_DARK, spaceBefore=2)))
 
 # ── Professional Experience ──
 elements.append(Paragraph('Professional Experience', section_header))
