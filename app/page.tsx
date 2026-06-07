@@ -1684,7 +1684,7 @@ export default function Home() {
         <footer className="py-8 border-t border-slate-700 bg-[#0a0a0f] relative z-10">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center text-slate-400">
-              <p>&copy; 2024 Tino Musikavanhu. Building the future, one quantum at a time.</p>
+              <p>&copy; 2024 Tino Musikavanhu. Building the future, one component at a time.</p>
             </div>
           </div>
         </footer>
